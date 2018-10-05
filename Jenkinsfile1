@@ -1,0 +1,10 @@
+node {
+  stage ('SCM checkout'){
+      git 'https://github.com/javahometech/my-app.git'
+  }
+  stage ('compaile-code'){
+      def MVNHOME = tool name: 'Maven 3.5.4', type: 'maven'
+      def MVNCMD = $MVNHOME/bin
+      sh "${MVNCMD}/mvn package"
+  }
+}
